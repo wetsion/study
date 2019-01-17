@@ -3,9 +3,10 @@ package com.wetsion.study.proxy.dynamic;
 import com.wetsion.study.proxy.IAnimal;
 
 /**
+ * 动态代理测试
+ *
  * @CLassName: DynamicTest
  * @Author: weixin
- * @Description: TODO
  * @DATE: 2019/1/17 8:22 PM
  * @Version: 1.0
  */
