@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Primary;
  * @DATE: 2019/1/11 3:05 PM
  * @Version: 1.0
  */
-@Configuration
+//@Configuration
 public class FactoryBeanConfig {
 
     @Bean

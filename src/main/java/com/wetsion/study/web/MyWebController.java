@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @DATE: 2019/1/10 2:29 PM
  * @Version: 1.0
  */
-@RestController
+//@RestController
 public class MyWebController {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
