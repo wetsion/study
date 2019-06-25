@@ -1,5 +1,7 @@
 package com.wetsion.study.transaction;
 
+import com.wetsion.study.common.entity.Food;
+import com.wetsion.study.common.mapper.FoodMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

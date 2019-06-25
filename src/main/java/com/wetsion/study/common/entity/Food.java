@@ -1,8 +1,10 @@
-package com.wetsion.study.transaction;
+package com.wetsion.study.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 
 /**
  * @author weixin
@@ -11,7 +13,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @date 2019/4/4 5:47 PM
  */
 @TableName("food")
-public class Food {
+public class Food implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
