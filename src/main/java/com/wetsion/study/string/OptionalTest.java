@@ -24,6 +24,16 @@ public class OptionalTest {
         Optional<String> stringOptional = Optional.empty();
         Optional<String> as = Optional.ofNullable(b).map(s -> s);
         System.out.println(as.get());
+        int COUNT_BITS = Integer.SIZE - 3;
+        int CAPACITY   = (1 << COUNT_BITS) - 1;
+        System.out.println(Integer.SIZE - 3);
+        System.out.println(-1 << COUNT_BITS);
+        System.out.println(-1 << COUNT_BITS | 0);
+        System.out.println(0 << COUNT_BITS);
+        System.out.println(1 << COUNT_BITS);
+        System.out.println(2 << COUNT_BITS);
+        System.out.println(3 << COUNT_BITS);
+        System.out.println(536870912 & ~CAPACITY);
     }
 
     @Test
