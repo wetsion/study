@@ -16,7 +16,7 @@ public class MybatisTestEndpoint {
 
     @GetMapping("/mybatis/cache/test1")
     public void test1() {
-        foodMapper.selectById(1);
-        foodMapper.selectById(1);
+        foodMapper.selectById(7);
+        foodMapper.selectById(7);
     }
 }

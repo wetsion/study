@@ -1,5 +1,7 @@
 package com.wetsion.study.thread;
 
+import org.junit.runner.RunWith;
+
 /**
  * @CLassName: StaticThread
  * @Author: weixin
