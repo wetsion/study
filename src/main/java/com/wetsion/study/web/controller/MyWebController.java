@@ -1,4 +1,4 @@
-package com.wetsion.study.web;
+package com.wetsion.study.web.controller;
 
 import com.wetsion.study.factorybean.ILog;
 import com.wetsion.study.service.CollectionService;

@@ -1,4 +1,4 @@
-package com.wetsion.study.string;
+package com.wetsion.study.java8feature;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -47,6 +47,27 @@ public class OptionalTest {
             }
         });
         System.out.println(JSON.toJSONString(r));
+    }
+
+    @Test
+    public void objtest() {
+        Jt jt = new Jt();
+        jt.setName("aaa");
+        Jt jt1 = jt;
+        jt1.setName("bbb");
+        Jt jt2 = jt(jt);
+        System.out.println(jt);
+        System.out.println(JSON.toJSONString(jt));
+        System.out.println(jt1);
+        System.out.println(JSON.toJSONString(jt1));
+        System.out.println(jt2);
+        System.out.println(JSON.toJSONString(jt2));
+    }
+
+    private Jt jt(Jt jt) {
+        Jt j = jt;
+        j.setName("ccc");
+        return j;
     }
 
     static class Jt {
