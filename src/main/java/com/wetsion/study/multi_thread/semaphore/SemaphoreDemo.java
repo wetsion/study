@@ -36,7 +36,7 @@ public class SemaphoreDemo {
     }
 
     public static void main(String[] args) {
-        Semaphore semaphore = new Semaphore(1);
+        Semaphore semaphore = new Semaphore(2);
         ExecutorService service = Executors.newCachedThreadPool();
         for (int i = 0;i<20;i++){
             service.execute(new SemphoreRunner(semaphore,i+1));
