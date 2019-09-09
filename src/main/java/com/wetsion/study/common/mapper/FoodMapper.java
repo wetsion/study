@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2019/4/4 5:56 PM
  */
 @Mapper
-@CacheNamespace
+//@CacheNamespace
 public interface FoodMapper extends BaseMapper<Food> {
 }
