@@ -21,49 +21,43 @@ public class ReentrantReadWriteLockTest {
         System.out.println(1 << 5);
         System.out.println(1 >> 5);
         System.out.println(1 >>> 5);
-        ReentrantReadWriteLockTest test = new ReentrantReadWriteLockTest();
-//        System.out.println(test.get("wx"));
-//        System.out.println(test.get("wx"));
+
+        Map<String, String> map = new HashMap<>(4);
+        ReadWriteLock lock = new ReentrantReadWriteLock();
+
         for (int i = 0; i < 20; i++) {
             String key = String.valueOf(i % 4);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    test.get(key);
-                }
-            }).start();
-        }
-    }
-
-    private Map<String, String> map = new HashMap<>();
-
-    private ReadWriteLock lock = new ReentrantReadWriteLock();
-
-    public String get(String key) {
-        String value = null;
-        lock.readLock().lock();
-        try {
-            value = map.get(key);
-            log.info("获取value");
-            if (value == null) {
-                lock.readLock().unlock();
-                lock.writeLock().lock();
-                try {
-                    if (value == null) {
-                        value = "test";
-                        map.put(key, value);
-                        log.info("写value");
-                    }
+                    String value = null;
                     lock.readLock().lock();
-                } finally {
-                    lock.writeLock().unlock();
+                    try {
+                        value = map.get(key);
+                        if (value == null) {
+                            lock.readLock().unlock();
+                            lock.writeLock().lock();
+                            try {
+                                value = map.get(key);
+                                if (value == null) {
+                                    value = key + "-test";
+                                    map.put(key, value);
+                                    log.info(Thread.currentThread().getName() + "写value: " + value);
+                                }
+                                lock.readLock().lock();
+                                log.info(Thread.currentThread().getName() + "获取到新value：" + value);
+                            } finally {
+                                lock.writeLock().unlock();
+                            }
+                        } else {
+                            log.info(Thread.currentThread().getName() + "获取到了value: " + value);
+                        }
+                    } finally {
+                        lock.readLock().unlock();
+                    }
                 }
-//                lock.readLock().lock();
-            }
-        } finally {
-            lock.readLock().unlock();
+            }, String.valueOf(i)).start();
         }
-        return value;
     }
 
 }

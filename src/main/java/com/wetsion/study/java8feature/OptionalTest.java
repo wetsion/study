@@ -37,6 +37,14 @@ public class OptionalTest {
     }
 
     @Test
+    public void t2() {
+        Object optional = Optional.ofNullable(null).orElse("a");
+        System.out.println(optional);
+        String a = null;
+        assert a != null;
+    }
+
+    @Test
     public void json() {
         Object[] objects = {"aaa", new Jt("wx")};
         System.out.println(JSON.toJSONString(objects));
