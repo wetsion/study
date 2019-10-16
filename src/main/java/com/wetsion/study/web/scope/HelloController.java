@@ -1,8 +1,9 @@
-package com.wetsion.study.web.controller;
+package com.wetsion.study.web.scope;
 
-import com.wetsion.study.web.config.RequestScopeBean;
-import com.wetsion.study.web.config.ScopeService;
-import com.wetsion.study.web.config.SessionScopeBean;
+import com.wetsion.study.web.scope.RequestScopeBean;
+import com.wetsion.study.web.scope.ScopeService;
+import com.wetsion.study.web.scope.SessionScopeBean;
+import com.wetsion.study.web.scope.impl.TimeScopeBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @Autowired
+    SingletonScopeBean singletonScopeBean;
+
+    @Autowired
     RequestScopeBean requestScopeBean;
 
     @Autowired
@@ -29,6 +33,15 @@ public class HelloController {
 
     @Autowired
     ApplicationContext applicationContext;
+
+    @Autowired
+    TimeScopeBean timeScopeBean;
+
+    @GetMapping("/hello-single")
+    public void helloSingle() {
+        System.out.println(singletonScopeBean);
+        System.out.println(singletonScopeBean.getCurrentTime());
+    }
 
     @GetMapping("/hello-request")
     public void helloRequest() {
@@ -51,5 +64,10 @@ public class HelloController {
     @GetMapping("/hello-e")
     public void helloE() {
         scopeService.printException();
+    }
+
+    @GetMapping("/hello-time")
+    public void hellTime() {
+        System.out.println(timeScopeBean.getCurrentTime());
     }
 }

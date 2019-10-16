@@ -1,4 +1,4 @@
-package com.wetsion.study.web.config;
+package com.wetsion.study.web.scope;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.wetsion.study.web.config;
+package com.wetsion.study.web.scope;
 
 import lombok.Data;
 
