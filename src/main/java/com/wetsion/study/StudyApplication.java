@@ -1,6 +1,7 @@
 package com.wetsion.study;
 
 import com.wetsion.study.factorybean.ILog;
+import com.wetsion.study.self_def_config_center.EnableRmsConfigCenter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@EnableDiscoveryClient
 @EnableTransactionManagement
 @EnableAsync
+@EnableRmsConfigCenter
 public class StudyApplication {
 
     public static void main(String[] args) {
