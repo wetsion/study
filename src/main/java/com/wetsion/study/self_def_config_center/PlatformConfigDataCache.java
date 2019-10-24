@@ -5,13 +5,15 @@ import lombok.Data;
 import java.util.Map;
 
 /**
+ * 本地缓存以及接收绑定数据
+ *
  * @author weixin
  * @version 1.0
- * @CLassName RmsPlatformConfig
+ * @CLassName PlatformConfigDataCache
  * @date 2019/10/24 8:39 PM
  */
 @Data
-public class RmsPlatformConfig {
+public class PlatformConfigDataCache {
 
     private String clientId;
 

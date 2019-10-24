@@ -1,5 +1,7 @@
 package com.wetsion.study.self_def_config_center;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,6 +51,13 @@ public class ConfigCenterDemoController {
                 e.printStackTrace();
             }
         });
+    }
+
+    @GetMapping("/config/get")
+    public JSONObject get() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("test", "nb");
+        return jsonObject;
     }
 
 }
