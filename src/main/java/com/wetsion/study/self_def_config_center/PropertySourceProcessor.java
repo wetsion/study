@@ -4,7 +4,9 @@ import com.wetsion.study.self_def_config_center.config.ConfigDataChangeListener;
 import com.wetsion.study.self_def_config_center.config.ConfigDataPropertySource;
 import com.wetsion.study.self_def_config_center.config.ConfigDataPropertySourceFactory;
 import com.wetsion.study.self_def_config_center.config.PropertySourcesConstants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.EnvironmentAware;
@@ -21,36 +23,36 @@ import java.util.List;
  * @CLassName PropertySourceProcessor
  * @date 2019/10/24 8:30 PM
  */
+@Slf4j
 public class PropertySourceProcessor implements EnvironmentAware, BeanFactoryPostProcessor {
+
+    PlatformBean platformBean;
 
     private ConfigurableEnvironment environment;
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        this.initPropertySources();
-        this.initAutoUpdateProperties(beanFactory);
+        log.info(environment.getProperty("client-id"));
+        platformBean = (PlatformBean) beanFactory.getBean("platformBean");
+        log.info(platformBean.getClientId());
+        this.initPropertySources(beanFactory);
     }
 
-    private void initPropertySources() {
+    private void initPropertySources(ConfigurableListableBeanFactory beanFactory) {
         if (environment.getPropertySources().contains(PropertySourcesConstants.RMS_PROPERTY_SOURCE_NAME)) {
-            //already initialized
+            // 已初始化
             return;
         }
+        ConfigDataChangeListener listener = new ConfigDataChangeListener(
+                environment, beanFactory);
         ConfigDataPropertySource configDataPropertySource =
                 new ConfigDataPropertySource(PropertySourcesConstants.RMS_PROPERTY_SOURCE_NAME,
-                        PropertySourcesConstants.RMS_CONFIG_DATA_REPOSITORY_HTTP);
+                        PropertySourcesConstants.RMS_CONFIG_DATA_REPOSITORY_HTTP,
+                        listener, platformBean);
         ConfigDataPropertySourceFactory.addConfigDataPropertySource(configDataPropertySource);
         environment.getPropertySources().addFirst(configDataPropertySource);
     }
 
-    private void initAutoUpdateProperties(ConfigurableListableBeanFactory beanFactory) {
-        ConfigDataChangeListener listener = new ConfigDataChangeListener(
-                environment, beanFactory);
-        List<ConfigDataPropertySource> configPropertySources = ConfigDataPropertySourceFactory.getConfigDataPropertySourceList();
-        for (ConfigDataPropertySource configPropertySource : configPropertySources) {
-            configPropertySource.addChangeListener(listener);
-        }
-    }
 
     @Override
     public void setEnvironment(Environment environment) {

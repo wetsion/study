@@ -1,10 +1,8 @@
 package com.wetsion.study.self_def_config_center;
 
 import lombok.Data;
-
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
-import java.util.Objects;
 
 /**
  * @author weixin

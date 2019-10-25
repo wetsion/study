@@ -3,6 +3,7 @@ package com.wetsion.study.self_def_config_center;
 import lombok.Data;
 
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * 本地缓存以及接收绑定数据
@@ -17,7 +18,7 @@ public class PlatformConfigDataCache {
 
     private String clientId;
 
-    private Map<String, String> configurations;
+    private Properties configurations;
 
     private Long lastUpdateTime;
 }
