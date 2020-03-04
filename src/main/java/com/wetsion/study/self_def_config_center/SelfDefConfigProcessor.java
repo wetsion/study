@@ -18,7 +18,7 @@ import java.util.List;
  * @CLassName SelfDefConfigProcessor
  * @date 2019/10/24 5:45 PM
  */
-public class SelfDefConfigProcessor implements BeanFactoryPostProcessor, BeanPostProcessor, BeanFactoryAware {
+public class SelfDefConfigProcessor implements  BeanPostProcessor, BeanFactoryAware {
 
     private BeanFactory beanFactory;
 
@@ -51,10 +51,10 @@ public class SelfDefConfigProcessor implements BeanFactoryPostProcessor, BeanPos
         this.beanFactory = beanFactory;
     }
 
-    @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-
-    }
+//    @Override
+//    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+//
+//    }
 
     private List<Field> findAllField(Class clazz) {
         final List<Field> fields = new LinkedList<>();
